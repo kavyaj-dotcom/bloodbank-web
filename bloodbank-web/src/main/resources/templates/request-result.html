@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Result | Blood Bank System</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <a th:href="@{/}" class="site-title">
+        <svg class="site-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+        </svg>
+        Blood Bank System
+    </a>
+
+    <nav class="site-nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/request}" aria-current="page">Request Blood</a>
+        <a th:href="@{/donor}">Register Donor</a>
+        <a th:href="@{/inventory}">Inventory</a>
+    </nav>
+</header>
+
+<main class="container page-content">
+
+    <section class="page-heading">
+        <span class="eyebrow">REQUEST SUMMARY</span>
+        <h1>Blood Request Result</h1>
+        <p class="section-description">
+            Review the result of your blood request and the available next steps.
+        </p>
+    </section>
+
+    <!-- Request fulfilled from inventory -->
+    <section th:if="${fulfilled}" class="result-card success-card">
+
+        <div class="result-heading">
+            <div class="result-icon success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12.5L10 17L19 7"/>
+                </svg>
+            </div>
+
+            <div>
+                <span class="result-status success-text">Inventory available</span>
+                <h2>Request Fulfilled</h2>
+                <p>
+                    This request was fulfilled directly from existing blood bank
+                    inventory. No donor contact was needed.
+                </p>
+            </div>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Request ID</span>
+                <strong th:text="${bloodRequest.requestId}"></strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Hospital</span>
+                <strong th:text="${bloodRequest.hospitalName}"></strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Hospital City</span>
+                <strong th:text="${bloodRequest.hospitalCity}"></strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Patient Blood Group</span>
+                <strong th:text="${bloodRequest.patientBloodGroup}"></strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Units Requested</span>
+                <strong th:text="${bloodRequest.unitsRequired}"></strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Error state -->
+    <section th:if="${error != null}" class="result-card error-card">
+
+        <div class="result-heading">
+            <div class="result-icon error-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 8V13"/>
+                    <path d="M12 17H12.01"/>
+                    <circle cx="12" cy="12" r="9"/>
+                </svg>
+            </div>
+
+            <div>
+                <span class="result-status error-text">Request unsuccessful</span>
+                <h2>Something Went Wrong</h2>
+                <p>Please review the message below.</p>
+            </div>
+        </div>
+
+        <div class="alert alert-error" th:text="${error}"></div>
+    </section>
+
+    <!-- Inventory shortage and donor matching -->
+    <section th:if="${!fulfilled and error == null}" class="result-card">
+
+        <div class="result-heading">
+            <div class="result-icon warning-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 3L22 20H2L12 3Z"/>
+                    <path d="M12 9V14"/>
+                    <path d="M12 17H12.01"/>
+                </svg>
+            </div>
+
+            <div>
+                <span class="result-status warning-text">Inventory shortage</span>
+                <h2>Inventory Insufficient</h2>
+                <p th:text="${shortageMessage}"></p>
+            </div>
+        </div>
+
+        <div class="match-summary">
+            <div>
+                <span class="detail-label">Potential donor matches</span>
+                <strong class="match-count" th:text="${#lists.size(matches)}"></strong>
+            </div>
+            <span class="match-summary-note">
+                Review the matching donors below.
+            </span>
+        </div>
+
+        <div class="table-wrapper"
+             th:if="${matches != null and !matches.isEmpty()}">
+
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Donor Name</th>
+                    <th>Blood Group</th>
+                    <th>City</th>
+                    <th>Days Since Last Donation</th>
+                    <th>Contact Number</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="match : ${matches}">
+                    <td class="donor-name" th:text="${match.donor.name}"></td>
+
+                    <td>
+                        <span class="blood-group-badge"
+                              th:text="${match.donor.bloodGroup}"></span>
+                    </td>
+
+                    <td>
+                        <span th:text="${match.donor.city}"></span>
+                        <span th:if="${match.sameCity}" class="nearby-badge">
+                            Nearby
+                        </span>
+                    </td>
+
+                    <td>
+                        <span th:if="${match.daysSinceLastDonation lt 100000}"
+                              th:text="${match.daysSinceLastDonation}"></span>
+                        <span th:if="${match.daysSinceLastDonation ge 100000}"
+                              class="new-donor-badge">New donor</span>
+                    </td>
+
+                    <td th:text="${match.donor.contactNumber}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${matches == null or matches.isEmpty()}"
+             class="empty-state">
+            <h3>No eligible donors found</h3>
+            <p>
+                No matching donors were found for this request.
+                Consider contacting the blood bank directly.
+            </p>
+        </div>
+
+        <form th:if="${matches != null and !matches.isEmpty()}"
+              th:action="@{/notify}"
+              method="post"
+              class="notify-form">
+
+            <input type="hidden" name="requestId"
+                   th:value="${bloodRequest.requestId}">
+
+            <input type="hidden" name="hospitalName"
+                   th:value="${bloodRequest.hospitalName}">
+
+            <input type="hidden" name="bloodGroup"
+                   th:value="${bloodRequest.patientBloodGroup}">
+
+            <input type="hidden" name="emergencyLevel"
+                   th:value="${bloodRequest.emergencyLevel}">
+
+            <input type="hidden" name="donorIds"
+                   th:each="match : ${matches}"
+                   th:value="${match.donor.donorId}">
+
+            <div class="notify-note">
+                <strong>Ready to notify?</strong>
+                <p>
+                    Submit the notification request to contact the listed donors.
+                </p>
+            </div>
+
+            <button type="submit" class="button">
+                Notify Eligible Donors
+            </button>
+        </form>
+    </section>
+
+    <div class="result-actions">
+        <a th:href="@{/request}" class="button">
+            Submit Another Request
+        </a>
+
+        <a th:href="@{/}" class="button button-secondary">
+            Back to Home
+        </a>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <p>Blood Bank Management System</p>
+    <span>Supporting blood inventory and donor coordination.</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register Donor | Blood Bank System</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="site-header">
+        <a th:href="@{/}" class="site-title">
+            <svg class="site-title-icon"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
+                <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+            </svg>
+            Blood Bank System
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/request}">Request Blood</a>
+            <a th:href="@{/donor}" aria-current="page">Register Donor</a>
+            <a th:href="@{/inventory}">Inventory</a>
+        </nav>
+    </header>
+
+    <!-- Page Introduction -->
+    <section class="hero">
+        <div class="hero-icon-wrap">
+            <svg class="hero-icon"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
+                <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+            </svg>
+        </div>
+
+        <p class="hero-tagline">Become a Donor</p>
+
+        <h1>Register a New Donor</h1>
+
+        <p class="hero-description">
+            Add donor information to the system to help support
+            blood requests and emergency donor matching.
+        </p>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="section">
+
+        <div class="section-header">
+            <div>
+                <h2 class="mt-0">Donor Information</h2>
+                <p class="section-description">
+                    Enter the donor's details in the fields below.
+                </p>
+            </div>
+        </div>
+
+        <form th:action="@{/donor}"
+              th:object="${donor}"
+              method="post">
+
+            <!-- Personal Details -->
+            <h3>Personal Details</h3>
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text"
+                       id="name"
+                       th:field="*{name}"
+                       placeholder="Enter full name"
+                       autocomplete="name"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number"
+                       id="age"
+                       th:field="*{age}"
+                       min="18"
+                       placeholder="Enter age"
+                       required>
+                <small class="form-help">
+                    Donor registration is restricted to adults.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" th:field="*{gender}" required>
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <hr>
+
+            <!-- Blood and Contact Details -->
+            <h3>Blood & Contact Details</h3>
+
+            <div class="form-group">
+                <label for="bloodGroup">Blood Group</label>
+                <select id="bloodGroup"
+                        th:field="*{bloodGroup}"
+                        required>
+                    <option value="">Select blood group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input type="tel"
+                       id="contactNumber"
+                       th:field="*{contactNumber}"
+                       placeholder="Enter contact number"
+                       autocomplete="tel"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City / Location</label>
+                <input type="text"
+                       id="city"
+                       th:field="*{city}"
+                       placeholder="Enter city or location"
+                       autocomplete="address-level2"
+                       required>
+                <small class="form-help">
+                    Location information may be used to prioritize
+                    potential donors for requests.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="lastDonationDate">
+                    Last Donation Date
+                </label>
+                <input type="date"
+                       id="lastDonationDate"
+                       th:field="*{lastDonationDate}">
+                <small class="form-help">
+                    Leave blank if the donor has never donated before.
+                </small>
+            </div>
+
+            <hr>
+
+            <!-- Status Details -->
+            <h3>Donor Status</h3>
+
+            <div class="form-group">
+                <label for="healthStatus">Health Status</label>
+                <select id="healthStatus"
+                        th:field="*{healthStatus}"
+                        required>
+                    <option value="">Select health status</option>
+                    <option value="Eligible">Eligible</option>
+                    <option value="Not Eligible">Not Eligible</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="availabilityStatus">
+                    Availability Status
+                </label>
+                <select id="availabilityStatus"
+                        th:field="*{availabilityStatus}"
+                        required>
+                    <option value="">Select availability</option>
+                    <option value="Available">Available</option>
+                    <option value="Not Available">Not Available</option>
+                </select>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit">
+                    Register Donor
+                </button>
+
+                <a th:href="@{/}" class="button button-secondary">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>
+            Blood Bank Management System · Supporting donor coordination
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>

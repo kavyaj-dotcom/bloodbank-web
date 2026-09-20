@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Result | Blood Bank System</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <a th:href="@{/}" class="site-title">
+        <svg class="site-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+        </svg>
+        Blood Bank System
+    </a>
+
+    <nav class="site-nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/request}">Request Blood</a>
+        <a th:href="@{/donor}">Register Donor</a>
+        <a th:href="@{/inventory}">Inventory</a>
+    </nav>
+</header>
+
+<main class="container page-content">
+
+    <section class="page-heading">
+        <span class="eyebrow">DONOR ALERTS</span>
+        <h1>Notification Result</h1>
+        <p class="section-description">
+            View the outcome of donor notifications for your blood request.
+        </p>
+    </section>
+
+    <!-- Success state -->
+    <section th:if="${success}" class="result-card success-card">
+
+        <div class="result-heading">
+            <div class="result-icon success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12.5L10 17L19 7"/>
+                </svg>
+            </div>
+
+            <div>
+                <span class="result-status success-text">Notification process completed</span>
+                <h2>Notifications Sent</h2>
+                <p>
+                    The following donors were notified for Request ID
+                    <strong th:text="${requestId}"></strong>.
+                </p>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Donor Name</th>
+                    <th>Contact</th>
+                    <th>Message</th>
+                    <th>Sent At</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="log : ${notifications}">
+                    <td class="donor-name" th:text="${log.donorName}"></td>
+                    <td th:text="${log.donorContact}"></td>
+                    <td class="message-cell" th:text="${log.message}"></td>
+                    <td th:text="${log.sentAt}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${#lists.isEmpty(notifications)}" class="empty-state">
+            No notification records are available for this request.
+        </div>
+    </section>
+
+    <!-- Failure state -->
+    <section th:if="${!success}" class="result-card error-card">
+
+        <div class="result-heading">
+            <div class="result-icon error-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 8V13"/>
+                    <path d="M12 17H12.01"/>
+                    <circle cx="12" cy="12" r="9"/>
+                </svg>
+            </div>
+
+            <div>
+                <span class="result-status error-text">Action unsuccessful</span>
+                <h2>Notification Failed</h2>
+                <p>
+                    The system could not complete the donor notification process.
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-error" th:text="${error}">
+            An error occurred while sending notifications.
+        </div>
+    </section>
+
+    <div class="result-actions">
+        <a th:href="@{/request}" class="button">
+            Submit Another Request
+        </a>
+
+        <a th:href="@{/}" class="button button-secondary">
+            Back to Home
+        </a>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <p>Blood Bank Management System</p>
+    <span>Connecting blood requests with potential donors.</span>
+</footer>
+
+</body>
+</html>

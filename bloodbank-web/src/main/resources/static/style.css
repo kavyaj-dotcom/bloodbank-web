@@ -1,0 +1,1158 @@
+
+/* =====================================================
+   BLOOD BANK MANAGEMENT SYSTEM
+   Complete Responsive Stylesheet
+   ===================================================== */
+
+/* ---------- 1. Variables ---------- */
+
+:root {
+    --primary: #b42332;
+    --primary-dark: #8e1b28;
+    --primary-light: #fff1f2;
+
+    --text: #20242c;
+    --muted: #667085;
+
+    --background: #f8f9fb;
+    --surface: #ffffff;
+    --surface-muted: #f8fafc;
+    --border: #e5e7eb;
+
+    --success: #15803d;
+    --success-bg: #dcfce7;
+
+    --danger: #b42332;
+    --danger-bg: #fee2e2;
+
+    --warning: #a16207;
+    --warning-bg: #fef3c7;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+    --transition: 0.2s ease;
+}
+
+/* ---------- 2. Reset and Base ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--background);
+}
+
+h1, h2, h3, h4 {
+    margin-top: 0;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+h1 {
+    margin-bottom: 14px;
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 750;
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.1rem;
+}
+
+p {
+    margin-top: 0;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+::selection {
+    color: #ffffff;
+    background: var(--primary);
+}
+
+/* ---------- 3. SVG Icon Size Fix ---------- */
+
+/* Default size for inline SVG icons.
+   This prevents SVGs from expanding to huge dimensions. */
+
+svg {
+    width: 24px;
+    height: 24px;
+    max-width: 100%;
+    flex-shrink: 0;
+}
+
+/* Header logo */
+
+.site-title-icon {
+    display: block;
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px;
+    max-width: 18px;
+    flex-shrink: 0;
+    fill: var(--primary);
+    stroke: none;
+}
+
+/* Homepage hero icon */
+
+.hero-icon {
+    display: block;
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    margin: 0 auto 20px;
+    flex-shrink: 0;
+    fill: var(--primary);
+    stroke: none;
+}
+
+/* Feature and action card icons */
+
+.feature-icon,
+.action-icon,
+.capability-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+    color: var(--primary);
+    background: var(--primary-light);
+    border-radius: var(--radius-md);
+}
+
+.feature-icon svg,
+.action-icon svg,
+.capability-icon svg {
+    width: 26px !important;
+    height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+}
+
+/* Other decorative icons */
+
+.result-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.step-number svg {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+/* ---------- 4. Main Layout ---------- */
+
+.container {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.page-content {
+    min-height: 65vh;
+    padding-top: 42px;
+    padding-bottom: 56px;
+}
+
+.page-heading {
+    margin-bottom: 28px;
+}
+
+.page-heading h1 {
+    margin-bottom: 10px;
+}
+
+.section-description {
+    max-width: 720px;
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+/* ---------- 5. Header and Navigation ---------- */
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 76px;
+    padding: 14px max(24px, calc((100% - 1120px) / 2));
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.site-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 1.15rem;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.site-title:hover {
+    color: var(--primary);
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.site-nav a {
+    padding: 9px 13px;
+    color: #475467;
+    font-size: 0.92rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+/* ---------- 6. Buttons ---------- */
+
+.button,
+button.button,
+button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 12px 20px;
+    color: #ffffff;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 650;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    transition:
+            background var(--transition),
+            border-color var(--transition),
+            transform var(--transition),
+            box-shadow var(--transition);
+}
+
+.button:hover,
+button.button:hover,
+button[type="submit"]:hover {
+    color: #ffffff;
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    box-shadow: 0 5px 14px rgba(180, 35, 50, 0.16);
+    transform: translateY(-1px);
+}
+
+.button-secondary {
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.button-secondary:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+    border-color: #f3b7bf;
+}
+
+.button-outline {
+    color: var(--primary);
+    background: transparent;
+    border: 1px solid var(--primary);
+}
+
+.button-outline:hover {
+    color: #ffffff;
+    background: var(--primary);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------- 7. Cards and Sections ---------- */
+
+.card,
+.form-card,
+.result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.card {
+    padding: 24px;
+    transition: box-shadow var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.section {
+    margin-top: 48px;
+}
+
+.section-header {
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    margin-bottom: 8px;
+}
+
+.section-header p {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+/* ---------- 8. Homepage Hero ---------- */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(32px, 6vw, 68px);
+    margin-top: 30px;
+    background:
+            radial-gradient(
+                    circle at top right,
+                    rgba(255, 220, 225, 0.75),
+                    transparent 38%
+            ),
+            linear-gradient(135deg, #fff5f6, #ffffff);
+    border: 1px solid #f5dadd;
+    border-radius: 24px;
+}
+
+.hero h1 {
+    max-width: 760px;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin-bottom: 26px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.hero-actions .button {
+    min-width: 160px;
+}
+
+/* ---------- 9. Homepage Grids ---------- */
+
+.capabilities-grid,
+.action-grid,
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.capability-card,
+.action-card,
+.step-card {
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.capability-card h3,
+.action-card h3,
+.step-card h3 {
+    margin-bottom: 10px;
+}
+
+.capability-card p,
+.action-card p,
+.step-card p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.7;
+}
+
+.card-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-weight: 650;
+}
+
+.step-number {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 18px;
+    color: var(--primary);
+    background: var(--primary-light);
+    border-radius: 50%;
+    font-weight: 750;
+}
+
+/* ---------- 10. Forms ---------- */
+
+.form-card {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.form-section-heading {
+    margin-bottom: 22px;
+}
+
+.form-section-heading h2 {
+    margin-bottom: 6px;
+    font-size: 1.15rem;
+}
+
+.form-section-heading p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.form-section-spaced {
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label,
+label {
+    color: #344054;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid #d0d5dd;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #98a2b3;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(180, 35, 50, 0.12);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+    color: #98a2b3;
+    background: #f2f4f7;
+    cursor: not-allowed;
+}
+
+.form-hint {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.form-actions .button {
+    min-height: 46px;
+}
+
+form > p {
+    margin-bottom: 20px;
+}
+
+form > p label {
+    display: inline-block;
+    margin-bottom: 7px;
+}
+
+form > p input,
+form > p select,
+form > p textarea {
+    margin-top: 5px;
+}
+
+/* ---------- 11. Alerts and Status ---------- */
+
+.alert {
+    padding: 15px 17px;
+    margin: 18px 0;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.alert-success {
+    color: #166534;
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.alert-error {
+    color: #991b1b;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.alert-warning {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.alert-info {
+    color: #1d4ed8;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-active {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.status-expired {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+/* ---------- 12. Result Pages ---------- */
+
+.result-card {
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.success-card {
+    border-top: 4px solid var(--success);
+}
+
+.error-card {
+    border-top: 4px solid var(--danger);
+}
+
+.result-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.result-heading h2 {
+    margin: 5px 0 8px;
+}
+
+.result-heading p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.result-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.success-icon {
+    color: var(--success);
+    background: var(--success-bg);
+}
+
+.error-icon {
+    color: var(--danger);
+    background: var(--danger-bg);
+}
+
+.warning-icon {
+    color: var(--warning);
+    background: var(--warning-bg);
+}
+
+.result-status {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.success-text {
+    color: var(--success);
+}
+
+.error-text {
+    color: var(--danger);
+}
+
+.warning-text {
+    color: var(--warning);
+}
+
+/* ---------- 13. Request Details ---------- */
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 16px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow-wrap: anywhere;
+}
+
+.detail-label {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.detail-item strong {
+    color: var(--text);
+    font-size: 1rem;
+}
+
+/* ---------- 14. Tables ---------- */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.data-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    background: var(--surface);
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+    color: #344054;
+    background: var(--surface-muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.data-table td {
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+    background: #fcfcfd;
+}
+
+.donor-name {
+    font-weight: 650;
+}
+
+.message-cell {
+    min-width: 240px;
+    overflow-wrap: anywhere;
+}
+
+/* Tables used by existing pages */
+
+table:not(.data-table) {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+}
+
+table:not(.data-table) th,
+table:not(.data-table) td {
+    padding: 12px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+
+table:not(.data-table) th {
+    background: var(--surface-muted);
+    font-weight: 700;
+}
+
+/* ---------- 15. Donor Matching ---------- */
+
+.match-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px;
+    margin-bottom: 20px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.match-summary > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.match-count {
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 750;
+}
+
+.match-summary-note {
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.blood-group-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--primary);
+    background: var(--primary-light);
+    border-radius: 999px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.nearby-badge,
+.new-donor-badge {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nearby-badge {
+    color: #8e2434;
+    background: #fff1f2;
+}
+
+.new-donor-badge {
+    color: #475467;
+    background: #f2f4f7;
+}
+
+.notify-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.notify-note p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.notify-form .button {
+    min-height: 46px;
+    padding: 12px 20px;
+}
+
+/* ---------- 16. Inventory ---------- */
+
+.blood-group-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.blood-group-card {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.blood-group-card h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.stock-count {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 750;
+}
+
+.stock-caption {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* ---------- 17. Empty State ---------- */
+
+.empty-state {
+    padding: 28px;
+    margin-top: 16px;
+    color: var(--muted);
+    text-align: center;
+    background: var(--surface-muted);
+    border: 1px dashed #d0d5dd;
+    border-radius: var(--radius-md);
+}
+
+.empty-state h3 {
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.empty-state p {
+    margin-bottom: 0;
+}
+
+/* ---------- 18. Footer ---------- */
+
+.site-footer {
+    padding: 26px 20px;
+    margin-top: 30px;
+    color: var(--muted);
+    text-align: center;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+    margin: 0 0 6px;
+    color: var(--text);
+    font-weight: 650;
+}
+
+.site-footer span {
+    font-size: 0.88rem;
+}
+
+/* ---------- 19. Utility Classes ---------- */
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--muted);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+
+/* ---------- 20. Responsive Design ---------- */
+
+@media (max-width: 900px) {
+    .site-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 24px;
+    }
+
+    .site-nav {
+        justify-content: flex-start;
+    }
+
+    .capabilities-grid,
+    .action-grid,
+    .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .blood-group-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 28px, 1120px);
+    }
+
+    .page-content {
+        padding-top: 28px;
+        padding-bottom: 36px;
+    }
+
+    .site-header {
+        padding: 16px 14px;
+    }
+
+    .site-title {
+        font-size: 1.05rem;
+    }
+
+    .site-nav {
+        gap: 4px;
+    }
+
+    .site-nav a {
+        padding: 8px 10px;
+        font-size: 0.84rem;
+    }
+
+    .hero {
+        padding: 28px 20px;
+        margin-top: 18px;
+        border-radius: var(--radius-lg);
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .capabilities-grid,
+    .action-grid,
+    .steps-grid,
+    .blood-group-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        padding: 22px 16px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .button {
+        width: 100%;
+    }
+
+    .result-card {
+        padding: 20px 16px;
+    }
+
+    .result-heading {
+        gap: 12px;
+    }
+
+    .result-icon {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .match-summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .notify-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .notify-form .button {
+        width: 100%;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .result-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section {
+        margin-top: 34px;
+    }
+}

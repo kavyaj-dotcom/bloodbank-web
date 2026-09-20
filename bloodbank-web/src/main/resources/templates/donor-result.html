@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donor Registration Result | Blood Bank System</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="site-header">
+        <a th:href="@{/}" class="site-title">
+            <svg class="site-title-icon"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
+                <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 11 12 2Z"/>
+            </svg>
+            Blood Bank System
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/request}">Request Blood</a>
+            <a th:href="@{/donor}" aria-current="page">Register Donor</a>
+            <a th:href="@{/inventory}">Inventory</a>
+        </nav>
+    </header>
+
+    <!-- Page Heading -->
+    <section class="hero">
+        <div class="hero-icon-wrap">
+            <svg class="hero-icon"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
+                <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+            </svg>
+        </div>
+
+        <p class="hero-tagline">Donor Registration</p>
+        <h1>Registration Result</h1>
+        <p class="hero-description">
+            View the result of your donor registration below.
+        </p>
+    </section>
+
+    <!-- Success Result -->
+    <section th:if="${success}" class="result-card">
+
+        <div class="result-heading">
+            <div class="result-icon result-icon-success" aria-hidden="true">
+                ✓
+            </div>
+
+            <div>
+                <h2 class="result-title">Donor Registered Successfully</h2>
+                <p class="result-subtitle">
+                    The donor details have been saved in the system.
+                </p>
+            </div>
+        </div>
+
+        <div class="result-details">
+            <div class="result-row">
+                <span class="result-label">Donor ID</span>
+                <strong th:text="${donor.donorId}">Donor ID</strong>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Full Name</span>
+                <strong th:text="${donor.name}">Donor Name</strong>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Blood Group</span>
+                <span class="blood-group-badge"
+                      th:text="${donor.bloodGroup}">A+</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">City / Location</span>
+                <strong th:text="${donor.city}">City</strong>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Contact Number</span>
+                <strong th:text="${donor.contactNumber}">Contact</strong>
+            </div>
+        </div>
+
+        <div class="result-actions">
+            <a th:href="@{/donor}" class="button">
+                Register Another Donor
+            </a>
+
+            <a th:href="@{/}" class="button button-secondary">
+                Back to Home
+            </a>
+        </div>
+
+    </section>
+
+    <!-- Failure Result -->
+    <section th:if="${!success}" class="result-card">
+
+        <div class="result-heading">
+            <div class="result-icon result-icon-error" aria-hidden="true">
+                !
+            </div>
+
+            <div>
+                <h2 class="result-title">Registration Failed</h2>
+                <p class="result-subtitle">
+                    The donor could not be registered.
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-error">
+            <strong>Reason:</strong>
+            <span th:text="${error}">
+                An error occurred during registration.
+            </span>
+        </div>
+
+        <div class="result-actions">
+            <a th:href="@{/donor}" class="button">
+                Try Again
+            </a>
+
+            <a th:href="@{/}" class="button button-secondary">
+                Back to Home
+            </a>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>
+            Blood Bank Management System · Supporting donor coordination
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>

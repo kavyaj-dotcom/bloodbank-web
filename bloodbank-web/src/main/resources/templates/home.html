@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intelligent Blood Bank Management System</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+
+        <a th:href="@{/}" class="site-title">
+            <svg class="site-title-icon"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
+                <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+            </svg>
+
+            Blood Bank System
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/}" aria-current="page">Home</a>
+            <a th:href="@{/request}">Request Blood</a>
+            <a th:href="@{/donor}">Register Donor</a>
+            <a th:href="@{/inventory}">Inventory</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-icon-wrap">
+                <svg class="hero-icon"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+                </svg>
+            </div>
+
+            <p class="hero-tagline">
+                Intelligent Blood Bank Management
+            </p>
+
+            <h1>
+                Connecting Blood Needs<br>
+                with Potential Donors
+            </h1>
+
+            <p class="hero-description">
+                Manage blood inventory, submit blood requests, and
+                identify potentially compatible donors when the
+                required blood group is unavailable.
+            </p>
+
+            <div class="hero-actions">
+
+                <a th:href="@{/request}" class="button">
+                    Request Blood
+                    <span aria-hidden="true">→</span>
+                </a>
+
+                <a th:href="@{/donor}"
+                   class="button button-secondary">
+                    Register as Donor
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CAPABILITIES ================= -->
+        <section class="capability-row"
+                 aria-label="System capabilities">
+
+            <div class="capability">
+                <svg class="capability-icon"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true"
+                     fill="none">
+                    <circle cx="12" cy="12" r="9"
+                            stroke="currentColor"
+                            stroke-width="1.6"/>
+                    <path d="M8 12.5L10.5 15L16 9"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                Inventory-first check
+            </div>
+
+            <div class="capability">
+                <svg class="capability-icon"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true"
+                     fill="none">
+                    <circle cx="9" cy="12" r="6"
+                            stroke="currentColor"
+                            stroke-width="1.6"/>
+                    <circle cx="15" cy="12" r="6"
+                            stroke="currentColor"
+                            stroke-width="1.6"/>
+                </svg>
+                ABO/Rh compatibility
+            </div>
+
+            <div class="capability">
+                <svg class="capability-icon"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true"
+                     fill="none">
+                    <path d="M12 4a5 5 0 00-5 5v3.5L5 16h14l-2-3.5V9a5 5 0 00-5-5z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"/>
+                    <path d="M10 18a2 2 0 004 0"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"/>
+                </svg>
+                SMS donor alerts
+            </div>
+
+            <div class="capability">
+                <svg class="capability-icon"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true"
+                     fill="none">
+                    <path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"/>
+                    <path d="M8 12H16M12 8V16"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"/>
+                </svg>
+                Location-based priority
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAIN ACTION CARDS ================= -->
+        <section class="section">
+
+            <div class="section-header">
+                <div>
+                    <h2 class="mt-0">What Would You Like to Do?</h2>
+                    <p class="section-description">
+                        Access the main features of the blood bank system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="action-grid">
+
+                <!-- Request Blood -->
+                <a th:href="@{/request}" class="action-card">
+
+                    <span class="action-card-icon-wrap">
+                        <svg class="action-card-icon"
+                             viewBox="0 0 24 24"
+                             aria-hidden="true"
+                             fill="none">
+                            <path d="M12 3C12 3 6 10 6 14.5C6 17.538 8.462 20 11.5 20H12.5C15.538 20 18 17.538 18 14.5C18 10 12 3 12 3Z"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"/>
+                        </svg>
+                    </span>
+
+                    <h2>Request Blood</h2>
+
+                    <p>
+                        Submit a blood request and check whether the
+                        required blood group is available in inventory.
+                    </p>
+
+                    <span class="card-link">
+                        Submit a request →
+                    </span>
+
+                </a>
+
+
+                <!-- Register Donor -->
+                <a th:href="@{/donor}" class="action-card">
+
+                    <span class="action-card-icon-wrap">
+                        <svg class="action-card-icon"
+                             viewBox="0 0 24 24"
+                             aria-hidden="true"
+                             fill="none">
+                            <circle cx="12" cy="8" r="3.2"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"/>
+                            <path d="M5 20c0-3.5 3-6 7-6"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"/>
+                            <line x1="17" y1="14" x2="17" y2="20"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"/>
+                            <line x1="14" y1="17" x2="20" y2="17"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </span>
+
+                    <h2>Register a Donor</h2>
+
+                    <p>
+                        Register a new donor and add their blood group
+                        and location details to the system.
+                    </p>
+
+                    <span class="card-link">
+                        Register donor →
+                    </span>
+
+                </a>
+
+
+                <!-- Manage Inventory -->
+                <a th:href="@{/inventory}" class="action-card">
+
+                    <span class="action-card-icon-wrap">
+                        <svg class="action-card-icon"
+                             viewBox="0 0 24 24"
+                             aria-hidden="true"
+                             fill="none">
+                            <path d="M12 4L20 8L12 12L4 8L12 4Z"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"
+                                  stroke-linejoin="round"/>
+                            <path d="M4 12L12 16L20 12"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M4 16L12 20L20 16"
+                                  stroke="currentColor"
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+
+                    <h2>Manage Inventory</h2>
+
+                    <p>
+                        View available blood stock and update inventory
+                        quantities when new units are added.
+                    </p>
+
+                    <span class="card-link">
+                        View inventory →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+        <section class="section">
+
+            <div class="section-header">
+                <div>
+                    <h2 class="mt-0">How It Works</h2>
+                    <p class="section-description">
+                        A simple workflow to support blood request
+                        processing and donor discovery.
+                    </p>
+                </div>
+            </div>
+
+            <div class="steps-grid">
+
+                <article class="step-card">
+                    <span class="step-number">1</span>
+
+                    <h3>Check Blood Availability</h3>
+
+                    <p>
+                        The system checks the inventory for the
+                        requested blood group.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">2</span>
+
+                    <h3>Find Potential Donors</h3>
+
+                    <p>
+                        If stock is unavailable, the system searches
+                        for potential donors using ABO/Rh compatibility
+                        and recorded location information.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">3</span>
+
+                    <h3>Send SMS Notifications</h3>
+
+                    <p>
+                        Matched donors are notified about the
+                        emergency blood request by SMS.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <p>
+            Blood Bank Management System
+        </p>
+        <p>
+            Supporting blood inventory management and donor coordination.
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>
